@@ -8,7 +8,9 @@
                 login: '',
                 senha: '',
                 loading: false,
-                erro : ''
+                erro : '',
+                inputLoginFocus: false,
+                inputSenhaFocus: false
             }
         },
         methods: {
@@ -19,6 +21,12 @@
                 }
 
                 alert('Login efetuado: ' + this.login + ", " + this.senha);
+            },
+            setFocusLogin(v :boolean){
+                this.inputLoginFocus = v;
+            },
+            setFocusSenha(v :boolean){
+                this.inputSenhaFocus = v;
             }
         }
 });
@@ -29,13 +37,20 @@
         <img src="../assets/imagens/logo.svg" alt="Logo Devagram" class="logo" />
         <form >
             <p v-if="erro" class="error">{{erro}}</p>
-            <div class="input">
+            <div class="input" :class="{focus : inputLoginFocus}">
                 <img src="../assets/imagens/login.svg" alt="Insira Login" />
-                <input type="text" v-model="login" />
+                <input type="text" v-model="login" placeholder="Usuário" 
+                    @focus="setFocusLogin(true)"
+                    @blur="setFocusLogin(false)"
+                
+                />
             </div>
-            <div class="input">
+            <div class="input" :class="{focus : inputSenhaFocus}">
                 <img src="../assets/imagens/senha.svg" alt="Insira a senha" />
-                <input type="password" v-model="senha" />
+                <input type="password" v-model="senha" placeholder="Senha"
+                    @focus="setFocusSenha(true)"
+                    @blur="setFocusSenha(false)"
+                />
             </div>
             <button @click.enter.prevent=" efetuarLogin">Login</button>
             <div class="link">
