@@ -3,14 +3,16 @@
 import InputPublico from '../components/InputPublico.vue';
 import iconeLogin from '../assets/imagens/login.svg';
 import iconeSenha from '../assets/imagens/senha.svg';
+import { LoginServices } from '../services/LoginServices';
 
-
+const loginServices = new LoginServices();
 
     export default defineComponent({
         setup(){
             return {
                 iconeLogin,
-                iconeSenha
+                iconeSenha,
+                loginServices
             }
         },
         data() {
@@ -22,18 +24,35 @@ import iconeSenha from '../assets/imagens/senha.svg';
         };
     },
     methods: {
-        efetuarLogin() {
-            if (!this.login && !this.senha) {
+        async efetuarLogin() {
+            try {
+                if (!this.login && !this.login.trim() 
+                    && !this.senha && !this.senha.trim()) {
                 this.erro = "Favor inserir dados!🙄";
                 return;
+                }
+                this.loading = true;
+                await loginServices.login({login: this.login, senha: this.senha});   
+            } catch (e : any) {
+                console.log(e);
+                if(e?.response?.data?.erro){
+                    this.erro = e?.response?.data?.erro;
+                }else{
+                    this.erro = 'Não foi possivel efetuar o login, tente novamente!';
+                }
             }
-            alert("Login efetuado: " + this.login + ", " + this.senha);
+            this.loading = false;
         },
         setLogin(v : any){
             this.login = v;
         },
         setSenha(v : any){
             this.senha = v;
+        }
+    },
+    computed: {
+        buttonText(){
+            return this.loading ? '...Carregando' : 'Login';
         }
     },
     components: { InputPublico }
@@ -55,7 +74,8 @@ import iconeSenha from '../assets/imagens/senha.svg';
                 @setInput="setSenha" />
 
 
-            <button @click.enter.prevent=" efetuarLogin">Login</button>
+            <button @click.enter.prevent=" efetuarLogin"
+            :disabled="loading">{{buttonText}}</button>
             <div class="link">
                 <p>Não possui uma conta?</p>
                 <a>Faça seu cadastro agora!!</a>
