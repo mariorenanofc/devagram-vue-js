@@ -6,14 +6,14 @@ import iconeSenha from '../assets/imagens/senha.svg';
 import { LoginServices } from '../services/LoginServices';
 import router from '../router';
 
-const loginServices = new LoginServices();
+const loginService = new LoginServices();
 
     export default defineComponent({
         setup(){
             return {
                 iconeLogin,
                 iconeSenha,
-                loginServices
+                loginService
             }
         },
         data() {
@@ -33,7 +33,7 @@ const loginServices = new LoginServices();
                 return;
                 }
                 this.loading = true;
-                await loginServices.login({login: this.login, senha: this.senha});
+                await loginService.login({login: this.login, senha: this.senha});
                 router.push({name : 'home'});
             } catch (e : any) {
                 console.log(e);

@@ -3,18 +3,18 @@
     import { LoginServices } from '../services/LoginServices';
     import router from '../router';
 
-const loginServices = new LoginServices();
+const loginService = new LoginServices();
 
     export default defineComponent({
 
         setup(){
             return {
-                loginServices
+                loginService
             }
         },
         methods: {
             sair(){
-                loginServices.logout();
+                loginService.logout();
                 router.push({name : 'login'});
             }
         }
