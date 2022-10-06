@@ -25,6 +25,12 @@
         max-width: 300px;
     }
 
+    .sucesso {
+        text-align: center;
+        color: $corPrimaria;
+        font-weight: bold;
+    }
+
     form {
         width: 100%;
         display: flex;

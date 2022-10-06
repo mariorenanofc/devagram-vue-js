@@ -17,7 +17,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: LoginVue
+      component: LoginVue,
+      props: true
     },
     {
       path: '/cadastro',

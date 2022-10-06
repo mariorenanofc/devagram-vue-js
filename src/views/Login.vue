@@ -66,6 +66,7 @@ const loginService = new LoginServices();
         <img src="../assets/imagens/logo.svg" alt="Logo Devagram" class="logo" />
         <form >
             <p v-if="erro" class="error">{{erro}}</p>
+            <p v-if="$route.query.cadastroComSucesso" class="sucesso">🟢 Cadastro Efetuado, faça seu login!</p>
             
             <InputPublico :icone="iconeLogin" alt="Insira o login" tipo="text" 
                 placeholder="Usuário" :model-value="login"
