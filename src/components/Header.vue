@@ -7,7 +7,13 @@
     export default defineComponent({
         data(){
             return{
-                resultado : []
+                resultado : [],
+                inputFocus: false
+            }
+        },
+        methods: {
+            setFocus( v : boolean){
+                this.inputFocus = v;
             }
         }
     });
@@ -19,9 +25,10 @@
         <div class="principal">
             <img src ="../assets/imagens/logo-horizontal.svg" alt="logo devagram"  />
             <div class="group">
-                <div class="pesquisa">
+                <div class="pesquisa" :class="{focus: inputFocus}" >
                     <img src ="../assets/imagens/pesquisar.svg" alt="pesquisar" layout="fill" class="icon " />
-                    <input type="text" placeholder="Pesquisar"  />
+                    <input type="text" placeholder="Pesquisar" @focus="setFocus(true)"
+                    @blur="setFocus(false)" />
                 </div>
 
                 <!--Navegação-->
