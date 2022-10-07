@@ -1,7 +1,7 @@
 <script lang="ts">
     import { defineComponent } from 'vue';
-    import { LoginServices } from '../services/LoginServices';
-    import router from '../router';
+    /*import { LoginServices } from '../services/LoginServices';
+    import router from '../router';*/
 import Header from '../components/Header.vue';
 
 /*const loginService = new LoginServices();*/

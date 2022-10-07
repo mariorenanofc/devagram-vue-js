@@ -2,21 +2,23 @@
     import { defineComponent } from 'vue';
     import { LoginServices } from '../services/LoginServices';
     import router from '../router';
+import Navegacao from './Navegacao.vue';
 
 
     export default defineComponent({
-        data(){
-            return{
-                resultado : [],
-                inputFocus: false
-            }
-        },
-        methods: {
-            setFocus( v : boolean){
-                this.inputFocus = v;
-            }
+    data() {
+        return {
+            resultado: [],
+            inputFocus: false
+        };
+    },
+    methods: {
+        setFocus(v: boolean) {
+            this.inputFocus = v;
         }
-    });
+    },
+    components: { Navegacao }
+});
 </script>
 
 <script />
@@ -31,7 +33,7 @@
                     @blur="setFocus(false)" />
                 </div>
 
-                <!--Navegação-->
+                <Navegacao />
             </div>
         </div>
         <div class="resultado" v-if="resultado.length > 0" >
