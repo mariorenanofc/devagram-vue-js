@@ -9,7 +9,7 @@
 </script>
 <template>
      <div class="container-postagem">
-        <p>{{post?._id}}</p>
+        <p>{post?._id}</p>
      </div>
 </template>
 

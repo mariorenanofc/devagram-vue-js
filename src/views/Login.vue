@@ -29,10 +29,12 @@ const loginService = new LoginServices();
             try {
                 if (!this.login && !this.login.trim() 
                     && !this.senha && !this.senha.trim()) {
-                this.erro = "Favor inserir dados!🙄";
-                return;
+                    this.erro = "Favor inserir dados!🙄";
+                    return;
                 }
+
                 this.loading = true;
+                
                 await loginService.login({login: this.login, senha: this.senha});
                 router.push({name : 'home'});
             } catch (e : any) {

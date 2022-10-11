@@ -1,7 +1,7 @@
-import { useAccessTokenStore } from '@/stores/accessToken';
-import CadastroVue from '@/views/Cadastro.vue';
+import { useAccessTokenStore } from './../stores/accessToken';
 import HomeVue from '@/views/Home.vue'
 import LoginVue from '@/views/Login.vue'
+import CadastroVue from '@/views/Cadastro.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 

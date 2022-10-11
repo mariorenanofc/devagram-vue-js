@@ -25,7 +25,7 @@ const  cadastroServices = new CadastroServices();
         },
         data() {
             return {
-            nome: '',
+            nome: "",
             email: "",
             senha: "",
             confirmacao: "",
@@ -106,20 +106,20 @@ const  cadastroServices = new CadastroServices();
             <p v-if="erro" class="error">{{erro}}</p>
             
             <InputPublico :icone="iconeUsuario" alt="Insira o nome do usuário" tipo="text" 
-                placeholder="Nome Completo" :model-value="nome"
+                placeholder="Nome Completo" :modelValue="nome"
                 @setInput="setNome" />
 
 
             <InputPublico :icone="iconeLogin" alt="Insira o Email" tipo="text" 
-                placeholder="Email" :model-value="email"
+                placeholder="Email" :modelValue="email"
                 @setInput="setEmail" />
 
             <InputPublico :icone="iconeSenha" alt="Insira a senha" tipo="password" 
-                placeholder="Senha" :model-value="senha" 
+                placeholder="Senha" :modelValue="senha" 
                 @setInput="setSenha" />
             
-                <InputPublico :icone="iconeSenha" alt="Confirmar a senha" tipo="password" 
-                placeholder="Confirme sua Senha" :model-value="confirmacao" 
+            <InputPublico :icone="iconeSenha" alt="Confirmar a senha" tipo="password" 
+                placeholder="Confirme sua Senha" :modelValue="confirmacao" 
                 @setInput="setConfirmacao" />
 
 

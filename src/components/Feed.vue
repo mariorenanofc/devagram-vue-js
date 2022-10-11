@@ -1,7 +1,7 @@
 <script lang="ts">
     import { defineComponent } from 'vue';
-    import Postagem from './Postagem.vue'; 
-
+    import Postagem from './Postagem.vue';
+    
     export default defineComponent({
     props: {
         posts: Array
@@ -11,7 +11,7 @@
 </script>
 <template>
      <div class="container-feed">
-        <Postagem :post="item" v-for="item in posts"/>
+        <Postagem :post="item" v-for="item in posts" />
      </div>
 </template>
 
