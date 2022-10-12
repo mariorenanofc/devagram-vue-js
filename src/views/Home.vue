@@ -30,6 +30,6 @@
 
 <template>
     <Header />
-    <Feed :posts="posts" />
+    <Feed  /> <!-- :posts="posts" -->
     <Footer />
 </template>

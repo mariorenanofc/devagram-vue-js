@@ -11,7 +11,7 @@
 </script>
 <template>
      <div class="container-feed">
-        <Postagem :post="item" v-for="item in posts" />
+        <Postagem  /> <!--:post="item" v-for="item in posts"-->
      </div>
 </template>
 
