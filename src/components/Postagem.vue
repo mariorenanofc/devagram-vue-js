@@ -41,7 +41,7 @@
 
         <div class="foto">
             <img src="../assets/imagens/Icon_perfil-min.png" alt="Imagem da Publicação" /> <!--:src="post?.foto"-->
-        </div>
+        </div>  
 
         <div class="rodape" >
             <div class="acoes" >
