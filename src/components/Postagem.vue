@@ -35,18 +35,18 @@
         <div @click="navegarParaPerfil">
             <section class="cabecalho" >
                 <Avatar :imagem="post?.usuario?.avatar" />
-                <strong>{{post?.usuario?.nome}}</strong>
+                <strong> Mario Renan{{post?.usuario?.nome}}</strong>
             </section>
         </div>
 
         <div class="foto">
-            <img :src="post?.foto" alt="Imagem da Publicação" />
+            <img src="../assets/imagens/Icon_perfil-min.png" alt="Imagem da Publicação" /> <!--:src="post?.foto"-->
         </div>
 
-        <div class="rotape" >
+        <div class="rodape" >
             <div class="acoes" >
-                <img :src="obterIconeCurtir" alt="Icone curtir" />
-                <img  src="../assets/imagens/comentario-inativo.svg" alt="Icone comentar" />
+                <img :src="obterIconeCurtir" alt="Icone curtir" class="feedIcone" />
+                <img  src="../assets/imagens/comentario-inativo.svg" alt="Icone comentar" class="feedIcone" />
                 <span class="curtidas">
                     Curtido por <strong>0{{post?.likes?.length}}</strong> pessoa{{post?.likes?.length > 1 ? 's' : ''}}
                 </span>
@@ -54,8 +54,8 @@
 
             <div class="descricao">
                 <strong>Mário Renan{{post?.usuario?.nome}}</strong>
-                <p>
-                   Lorem ipsum dolor sit amet. {{post?.descricao}}
+
+                <p>Lorem ipsum dolor sit amet. {{post?.descricao}}
                 </p>
             </div>
 
@@ -73,4 +73,4 @@
      </div>
 </template>
 
-<!-- <style lang="scss" src="@/assets/styles/feed.scss" /> -->
+<style lang="scss" src="@/assets/styles/postagem.scss" /> 

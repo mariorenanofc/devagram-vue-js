@@ -1,0 +1,125 @@
+@import "./variaveis.scss";
+
+.container-postagem {
+    margin-top: 10px;
+    .avatar {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    .cabecalho {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        padding: 0 12px;
+        margin-bottom: 8px;
+
+
+        strong{
+            font-size: 12px;
+            font-family: $fontBold;
+            color: $cinza4;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        
+    }
+
+    .foto {
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 360px;
+            object-fit: cover;
+        }
+    }
+
+    .rodape {
+        padding: 5px 16px;
+
+        .descricao{
+            strong{
+                font-size: 12px;
+                font-family: $fontBold;
+                float: left;
+                margin-right: 4px;
+                color: $cinza4;
+            }
+
+            p {
+                font-family: $fontLight;
+                font-size: 12px;
+                margin: 0 0 2px;
+                color: $cinza4;
+            }
+        }
+
+        .acoes {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+
+            .feedIcone {
+                width: 20px;
+                height: 20px;
+                margin: 0 5px 0 0;
+                cursor: pointer;
+            }
+
+            span {
+                margin-right: 5px !important;
+            }
+
+            .curtidas {
+                font-family: $fontLight;
+                font-size: 10px;
+                color: $cinza4;
+                
+
+                strong {
+                    font-size: 10px;
+                    font-family: $fontBold;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .comentarios {
+            max-height: 100px;
+            overflow-y: auto;
+
+            div {
+                height: 20px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: start;
+
+
+                strong {
+                    margin-right: 5px;
+                    font-size: 12px;
+                    color: $cinza4;
+                }
+
+                p {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+    
+
+    @media screen and ( min-width: $desktopBreakpoint) {
+        .foto {
+            img {
+                width: 100%;
+                
+            }
+        } 
+    }
+}
