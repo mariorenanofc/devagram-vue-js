@@ -4,7 +4,9 @@
 
     import imgCurtir from '../assets/imagens/curtir.svg';
     import imgCurtiu from '../assets/imagens/curtiu.svg';
+    import { FeedServices }  from '../services/FeedServices';
 
+    const feedServices = new FeedServices();
     export default defineComponent({
         setup(){
             return {
@@ -16,7 +18,20 @@
         },
         methods: {
             navegarParaPerfil() {
-        }   
+            },
+            async togglCurtir(){
+                try{
+                    await feedServices.togglCurtir(this.post?._id);
+                    const index = this.post?.likes?.findIndex((e : string) => e === this.loggedUserId);
+                    if  (index != -1){
+                        this.post?.likes?.splice(index, 1);
+                    }else {
+                        this.post?.likes?.push(this.loggedUserId)
+                    }
+                }catch(e){
+                    console.log(e);
+                }
+            }   
         },
         components: { Avatar },
         computed: {
@@ -45,7 +60,7 @@
 
         <div class="rodape" >
             <div class="acoes" >
-                <img :src="obterIconeCurtir" alt="Icone curtir" class="feedIcone" />
+                <img :src="obterIconeCurtir" alt="Icone curtir" class="feedIcone" @click="togglCurtir" />
                 <img  src="../assets/imagens/comentario-inativo.svg" alt="Icone comentar" class="feedIcone" />
                 <span class="curtidas">
                     Curtido por <strong>0{{post?.likes?.length}}</strong> pessoa{{post?.likes?.length > 1 ? 's' : ''}}
