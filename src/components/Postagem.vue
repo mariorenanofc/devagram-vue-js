@@ -9,12 +9,15 @@
     import { FeedServices }  from '../services/FeedServices';
 
     const feedServices = new FeedServices();
+    const MAX_DESCRICAO = 20;
+
     export default defineComponent({
         setup(){
             return {
                 loggedUserId : localStorage.getItem(`_id`),
                 loggedAvatar : localStorage.getItem(`avatar`) ?? '',
-                loggedName : localStorage.getItem(`nome`) ?? ''
+                loggedName : localStorage.getItem(`nome`) ?? '',
+                MAX_DESCRICAO
             }  
         },
         props: {
@@ -23,7 +26,8 @@
         data(){
             return {
                 showComentario  : false,
-                comentarioMsg  : ''
+                comentarioMsg  : '',
+                showDescricaoFull : false
             }
         },
         methods: {
@@ -64,6 +68,9 @@
                 }catch(e){
                     console.log(e);
                 }
+            },
+            togglDescriacaoFull(){
+                this.showDescricaoFull = !this.showDescricaoFull;
             }
         },
         components: { Avatar },
@@ -77,6 +84,12 @@
             },
             obterIconeComentario(){
                 return this.showComentario ? imgCcomentarioAtivo : imgComentario;
+            },
+            exibirDescricao(){
+                if(this.showDescricaoFull){
+                   return this.post?.descricao;
+                }
+                return this.post?.descricao?.length > MAX_DESCRICAO ? this.post?.descricao?.substring(0, MAX_DESCRICAO) + '...' : this.post?.descricao;
             }
     }
 });
@@ -91,7 +104,7 @@
         </div>
 
         <div class="foto">
-            <img src="../assets/imagens/Icon_perfil-min.png" alt="Imagem da Publicação" /> <!--:src="post?.foto"-->
+            <img src="../assets/imagens/logorifa.png" alt="Imagem da Publicação" /> <!--:src="post?.foto"-->
         </div>  
 
         <div class="rodape" >
@@ -107,14 +120,18 @@
             <div class="descricao">
                 <strong>Mário Renan{{post?.usuario?.nome}}</strong>
 
-                <p>Lorem ipsum dolor sit amet. {{post?.descricao}}
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque ad rerum eaque esse voluptates facere porro quos incidunt et officia deserunt quisquam unde quasi, assumenda magni itaque dolores veniam animi dignissimos libero accusantium ex! Quae, provident molestias. Dignissimos, maxime quas!. {{exibirDescricao}}
+                    <span v-if="post?.descricao.legth > MAX_DESCRICAO && !showDescricaoFull"
+                            @click="togglDescriacaoFull" class="mais">
+                        mais
+                    </span>
                 </p>
             </div>
 
             <div class="comentarios">
-                <div >  <!--v-for="(comentario, index) in post?.comentarios" :key="index"-->
-                    <strong>Lucas Maincon{{}}</strong> <!--comentario.nome-->
-                    <p>Abrobinhas 🎇{{}}</p> <!--comentario.comentario-->
+                <div v-for="(comentario, index) in post?.comentarios" :key="index">  <!---->
+                    <strong>Lucas Maincon{{comentario.nome}}</strong> <!---->
+                    <p>Abrobinhas 🎇{{comentario.comentario}}</p> <!---->
                 </div>
             </div>
         </div>
