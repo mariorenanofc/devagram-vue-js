@@ -1,0 +1,36 @@
+@import "./variaveis.scss";
+
+
+.container-resultado{
+    display: flex;
+    padding: 10px 16px;
+    border-bottom: 0.5px solid $cinza1;
+
+
+    cursor: pointer;
+
+    &:hover{
+        background-color: $cinza;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    .info {
+        > * {
+            display: block;
+            font-size: 12px;
+            color: $cinza4;
+        }
+    }
+
+
+
+    @media screen and (min-width: $desktopBreakpoint) {
+        
+    }
+}
+
