@@ -4,6 +4,8 @@
     import Footer from '../components/Footer.vue';
     import {FeedServices} from '../services/FeedServices';
     import Feed from '../components/Feed.vue';
+    import router from '@/router';
+    
 
     const feedServices = new FeedServices();
     
@@ -16,7 +18,11 @@
         },
         async mounted() {
             try{
-               const result = await feedServices.getFeedPrincipal();
+                if(!this.$route.params?.id){
+                    return router.push({name : 'home'}) 
+                }
+                const id = this.$route.params?.id as String;
+                const result = await feedServices.getFeedPorId(id);
                 if(result && result.data){
                     this.posts = result.data;
                 }
@@ -30,6 +36,6 @@
 
 <template>
     <Header />
-    <Feed  :posts="posts"/> 
+    <Feed  :posts="posts"/> <!--  -->
     <Footer />
 </template>

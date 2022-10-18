@@ -99,12 +99,12 @@
         <div @click="navegarParaPerfil">
             <section class="cabecalho" >
                 <Avatar :imagem="post?.usuario?.avatar" />
-                <strong> Mario Renan{{post?.usuario?.nome}}</strong>
+                <strong>{{post?.usuario?.nome}}</strong>
             </section>
         </div>
 
         <div class="foto">
-            <img src="../assets/imagens/logorifa.png" alt="Imagem da Publicação" /> <!--:src="post?.foto"-->
+            <img :src="post?.foto" alt="Imagem da Publicação" /> <!---->
         </div>  
 
         <div class="rodape" >
@@ -118,9 +118,9 @@
             </div>
 
             <div class="descricao">
-                <strong>Mário Renan{{post?.usuario?.nome}}</strong>
+                <strong>{{post?.usuario?.nome}}</strong>
 
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque ad rerum eaque esse voluptates facere porro quos incidunt et officia deserunt quisquam unde quasi, assumenda magni itaque dolores veniam animi dignissimos libero accusantium ex! Quae, provident molestias. Dignissimos, maxime quas!. {{exibirDescricao}}
+                <p>{{exibirDescricao}}
                     <span v-if="post?.descricao.legth > MAX_DESCRICAO && !showDescricaoFull"
                             @click="togglDescriacaoFull" class="mais">
                         mais
@@ -130,8 +130,8 @@
 
             <div class="comentarios">
                 <div v-for="(comentario, index) in post?.comentarios" :key="index">  <!---->
-                    <strong>Lucas Maincon{{comentario.nome}}</strong> <!---->
-                    <p>Abrobinhas 🎇{{comentario.comentario}}</p> <!---->
+                    <strong>{{comentario.nome}}</strong> <!---->
+                    <p>{{comentario.comentario}}</p> <!---->
                 </div>
             </div>
         </div>

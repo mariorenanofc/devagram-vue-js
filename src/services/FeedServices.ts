@@ -7,7 +7,7 @@ export class FeedServices extends HttpApiServices{
     }
 
     async getFeedPorId(id: String){
-        return await this.get('/feed?id='+ id);
+        return await this.get('/feed?id='+id);
     }
 
     async togglCurtir(id : String){

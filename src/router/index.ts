@@ -3,7 +3,7 @@ import HomeVue from '@/views/Home.vue'
 import LoginVue from '@/views/Login.vue'
 import CadastroVue from '@/views/Cadastro.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-
+import UsuarioVue from '@/views/Usuario.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +24,12 @@ const router = createRouter({
       path: '/cadastro',
       name: 'cadastro',
       component: CadastroVue
+    },
+    {
+      path: '/usuario/:id',
+      name: 'usuario',
+      component: UsuarioVue,
+      meta: {rotaPrivada: true}
     }
     
   ]
