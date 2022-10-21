@@ -4,9 +4,9 @@
 
     import imgCurtir from '../assets/imagens/curtir.svg';
     import imgCurtiu from '../assets/imagens/curtiu.svg';
-    import imgComentario from '../assets/imagens/comentario-inativo.svg'
-    import imgCcomentarioAtivo from '../assets/imagens/comentario-ativo.svg'
-    import { FeedServices }  from '../services/FeedServices';
+    import imgComentario from '../assets/imagens/comentario-inativo.svg';
+    import imgCcomentarioAtivo from '../assets/imagens/comentario-ativo.svg';
+    import { FeedServices }  from '@/services/FeedServices';
 
     const feedServices = new FeedServices();
     const MAX_DESCRICAO = 20;
@@ -40,7 +40,7 @@
                     if  (index != -1){
                         this.post?.likes?.splice(index, 1);
                     }else {
-                        this.post?.likes?.push(this.loggedUserId)
+                        this.post?.likes?.push(this.loggedUserId);
                     }
                 }catch(e){
                     console.log(e);
@@ -76,11 +76,9 @@
         components: { Avatar },
         computed: {
             obterIconeCurtir(){
-                console.log(this.post?.likes.findIndex ((e : String) => e === this.loggedUserId ) !=-1);
-                if(this.post?.like && this.post?.likes.findIndex ((e : String) => e === this.loggedUserId ) !=-1 ){
-                    return imgCurtiu
-                }
-                return imgCurtir
+                return this.post?.likes
+                    && this.post?.likes.findIndex((e : String) => e === this.loggedUserId) !=-1
+                    ? imgCurtiu : imgCurtir
             },
             obterIconeComentario(){
                 return this.showComentario ? imgCcomentarioAtivo : imgComentario;
@@ -119,10 +117,11 @@
 
             <div class="descricao">
                 <strong>{{post?.usuario?.nome}}</strong>
-
-                <p>{{exibirDescricao}}
-                    <span v-if="post?.descricao.legth > MAX_DESCRICAO && !showDescricaoFull"
-                            @click="togglDescriacaoFull" class="mais">
+                <p>
+                    {{exibirDescricao}}
+                    <span v-if="post?.descricao.length > MAX_DESCRICAO && !showDescricaoFull"
+                        @click="togglDescriacaoFull"
+                    >
                         mais
                     </span>
                 </p>

@@ -11,7 +11,7 @@ export class FeedServices extends HttpApiServices{
     }
 
     async togglCurtir(id : String){
-        return this.put(`/likes?id=${id}`);
+        return this.put(`/like?id=${id}`);
     }
     async enviarComentario(id : String, comentario: String){
         return this.put(`/comentario?id=${id}`, {

@@ -50,18 +50,21 @@
                 color: $cinza4;
             }
 
-            p {
+            p{
                 font-family: $fontLight;
                 font-size: 12px;
                 margin: 0 0 2px;
                 color: $cinza4;
-
+                
                 span{
+                    
                     cursor: pointer;
                     text-decoration: underline;
                     color: $corPrimaria3;
                 }
             }
+            
+            
         }
 
         .acoes {
