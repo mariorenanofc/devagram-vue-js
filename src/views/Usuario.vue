@@ -6,13 +6,14 @@
     import {UsuarioServices} from '../services/UsuarioServices';
     import Feed from '../components/Feed.vue';
     import router from '@/router';
+    import HeaderPerfil from '@/components/HeaderPerfil.vue';
     
 
     const feedServices = new FeedServices();
     const usuarioServices = new UsuarioServices();
     
     export default defineComponent({
-        components: { Header, Footer, Feed },
+        components: { Header, Footer, Feed, HeaderPerfil },
         data(){
             return {
                 posts: [],
@@ -51,6 +52,7 @@
 
 <template>
     <Header :hide="true" />
+    <HeaderPerfil :usuario="usuario" />
     <Feed  :posts="posts" :temCabecalho="true" /> <!--  -->
     <Footer />
 </template>
