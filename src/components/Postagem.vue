@@ -7,6 +7,7 @@
     import imgComentario from '../assets/imagens/comentario-inativo.svg';
     import imgCcomentarioAtivo from '../assets/imagens/comentario-ativo.svg';
     import { FeedServices }  from '@/services/FeedServices';
+    import router from '@/router';
 
     const feedServices = new FeedServices();
     const MAX_DESCRICAO = 20;
@@ -32,6 +33,7 @@
         },
         methods: {
             navegarParaPerfil() {
+                router.push("/usuario/" + this.post?.idUsuario);
             },
             async togglCurtir(){
                 try{

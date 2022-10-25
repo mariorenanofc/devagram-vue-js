@@ -18,10 +18,8 @@
         },
         async mounted() {
             try{
-                if(!this.$route.params?.id){
-                    return router.push({name : 'home'}); 
-                }
-                const id = this.$route.params?.id as String;
+                const  loggedId = localStorage.getItem('_id');
+                const id = loggedId as String;
                 const result = await feedServices.getFeedPorId(id);
                 if(result && result.data){
                     this.posts = result.data;
