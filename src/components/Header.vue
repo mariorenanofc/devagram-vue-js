@@ -8,48 +8,51 @@
     const usuarioServices = new UsuarioServices();
 
     export default defineComponent({
-    data() {
+        props: {
+            hide : Boolean,
+        },
+        data() {
         return {
             resultado: [] as any,
             inputFocus: false,
             pesquisa : '',
         };
-    },
-    methods: {
-        setFocus(v: boolean) {
-            this.inputFocus = v;
         },
-        async buscarUsuarios(e : any){
-            console.log(`buscarUsuarios`)
-            try {
-                if(!e?.target?.value){
-                    this.resultado = [];
-                    this.pesquisa = '';
-                    return;
-                }
+        methods: {
+            setFocus(v: boolean) {
+                this.inputFocus = v;
+            },
+            async buscarUsuarios(e : any){
+                console.log(`buscarUsuarios`)
+                try {
+                    if(!e?.target?.value){
+                        this.resultado = [];
+                        this.pesquisa = '';
+                        return;
+                    }
 
-                this.pesquisa = e?.target?.value;
-                if(!this.pesquisa || this.pesquisa.trim().length <2){
-                    return;
-                }
+                    this.pesquisa = e?.target?.value;
+                    if(!this.pesquisa || this.pesquisa.trim().length <2){
+                        return;
+                    }
 
-                const resposta = await usuarioServices.pesquisar(this.pesquisa);
-                if(resposta && resposta.data){
-                    this.resultado = resposta.data;
-                }
+                    const resposta = await usuarioServices.pesquisar(this.pesquisa);
+                    if(resposta && resposta.data){
+                        this.resultado = resposta.data;
+                    }
 
-            } catch (e) {
-                console.log(e);
+                } catch (e) {
+                    console.log(e);
+                }
             }
-        }
-    },
-    components: { Navegacao, ResultadoBusca }
+        },
+        components: { Navegacao, ResultadoBusca }
 });
 </script>
 
 <script />
 <template>
-    <header class="container-header">
+    <header class="container-header" :class="{hide}">
         <div class="principal">
             <img src ="../assets/imagens/logo-horizontal.svg" alt="logo devagram"  />
             <div class="group">

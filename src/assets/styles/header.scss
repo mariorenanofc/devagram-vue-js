@@ -11,6 +11,10 @@
     background-color: white;
     border-bottom: 0.5px solid $cinza1;
 
+    &.hide {
+        display: none;
+    }
+
     .principal {
         width: 100%;
         padding: 8px 16px;
@@ -77,6 +81,10 @@
 
 
     @media screen and (min-width: $desktopBreakpoint) {
+        &.hide {
+            display: flex;
+        }
+
         .principal {
             justify-content: space-evenly;
 

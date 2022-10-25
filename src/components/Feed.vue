@@ -4,13 +4,14 @@
     
     export default defineComponent({
     props: {
-        posts: Array
+        posts: Array,
+        temCabecalho: Boolean
     },
     components: { Postagem }
 });
 </script>
 <template>
-     <div class="container-feed">
+     <div class="container-feed" :class="{perfil:temCabecalho}">
         <Postagem :post="item" v-for="item in posts" /> 
      </div>
 </template>

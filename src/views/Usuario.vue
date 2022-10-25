@@ -3,17 +3,20 @@
     import Header from '../components/Header.vue';
     import Footer from '../components/Footer.vue';
     import {FeedServices} from '../services/FeedServices';
+    import {UsuarioServices} from '../services/UsuarioServices';
     import Feed from '../components/Feed.vue';
     import router from '@/router';
     
 
     const feedServices = new FeedServices();
+    const usuarioServices = new UsuarioServices();
     
     export default defineComponent({
         components: { Header, Footer, Feed },
         data(){
             return {
-                posts: []
+                posts: [],
+                usuario : {} as any,
             }
         },
         async mounted() {
@@ -22,9 +25,21 @@
                     return router.push({name : 'home'}); 
                 }
                 const id = this.$route.params?.id as String;
+                const usuarioResult = await usuarioServices.buscarDadosPorId(id);
+
+                if(!usuarioResult || !usuarioResult.data){
+                    return;
+                }
+
+                this.usuario = usuarioResult.data;
+
                 const result = await feedServices.getFeedPorId(id);
                 if(result && result.data){
-                    this.posts = result.data;
+                    const postsFinal = result.data.map((p: any) =>  {
+                        p.usuario = usuarioResult.data;
+                        return p;
+                    })
+                    this.posts = postsFinal;
                 }
             }catch(e){
                 console.log(e);
@@ -35,7 +50,7 @@
 
 
 <template>
-    <Header />
-    <Feed  :posts="posts"/> <!--  -->
+    <Header :hide="true" />
+    <Feed  :posts="posts" :temCabecalho="true" /> <!--  -->
     <Footer />
 </template>
