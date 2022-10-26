@@ -2,9 +2,53 @@
 
 .container-acoes {
 
+    display: flex;
+    align-items: center;
+    padding: 8px 18px;
+    border-bottom: 0.5px solid $cinza1;
+    
+    
+    span{
+        cursor: pointer;
+    }
 
+    img{
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+
+    strong {
+        margin: auto;
+        font-family: $fontBold;
+        font-size: 16px;
+        letter-spacing: 0.01em;
+        color: $cinza4;
+    }
+
+    .principal {
+        color: $corPrimaria;
+        font-family: $fontBold;
+    }
 
     @media screen and ( min-width: $desktopBreakpoint) {
-        
+        padding: 18px 24px;
+        border-bottom: 0.5px solid $cinza1;
+    
+    
+        span{
+            font-size: 16px;
+        }
+
+        img{
+            width: 28px;
+            height: 28px;
+            
+        }
+
+        strong {
+            
+            font-size: 20px;
+        }
     }
 }

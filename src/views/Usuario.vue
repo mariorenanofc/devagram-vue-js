@@ -18,6 +18,7 @@
             return {
                 posts: [],
                 usuario : {} as any,
+                mobile: window.innerWidth <=992,
             }
         },
         async mounted() {
@@ -45,6 +46,11 @@
             }catch(e){
                 console.log(e);
             }
+        },
+        computed: {
+            getShowLeft(){
+                return this.mobile ? true : false;
+            }
         }
     });
 </script>
@@ -52,7 +58,13 @@
 
 <template>
     <Header :hide="true" />
-    <HeaderPerfil :usuario="usuario" />
+    <HeaderPerfil 
+        :usuario="usuario"
+        :title="usuario?.nome"
+        :showLeft="getShowLeft"
+        :isLeftIcon="true"
+        :showRight="false"
+        />
     <Feed  :posts="posts" :temCabecalho="true" /> <!--  -->
     <Footer />
 </template>
