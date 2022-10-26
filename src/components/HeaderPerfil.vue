@@ -72,7 +72,7 @@
               <span> Publicações</span>
             </div>
             <div class="status">
-              <strong>10{{usuario?.seguidores}}mil</strong>
+              <strong>{{usuario?.seguidores}}</strong>
               <span> Seguidores</span>
             </div>
             <div class="status">
