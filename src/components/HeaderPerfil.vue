@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <button :class="{principal: !usuario.segueEsseUsuario}" @click="acaoBotao" >{{obterTextoBotaoPrincipal}}</button>
+          <button :class="{principal: !usuario?.segueEsseUsuario ?? false}" @click="acaoBotao" >{{obterTextoBotaoPrincipal}}</button>
         </div>
       </div>
     </div>    
