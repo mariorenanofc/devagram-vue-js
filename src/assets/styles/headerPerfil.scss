@@ -5,10 +5,109 @@
     margin-top: 0px;
     background-color: white;
 
+    .perfil{
+        display: flex;
+        flex-direction: row;
+        padding: 16px 16px 24px;
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            margin-right: 24px;
+    
+            border: solid 3px transparent;
+    
+            background-image: linear-gradient(to bottom,  white, white), radial-gradient(circle at top center, $corPrimaria, $corPrimaria3);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+    
+        .infos{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+    
+            .dados {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+    
+                .status{
+                    margin-bottom: 15px;
+                    text-align: center;
+    
+                    strong {
+                        font-size: 14px;
+                        display: block;
+                        line-height: 14px;
+                    }
+    
+                    span {
+                        font-size: 12px;
+                        display: block;
+                        line-height: 14px;
+                    }
+                }
+            }
+
+            button {
+                border-radius: 4px;
+                font-size: 12px;
+                height: 28px;
+                outline: none;
+                border: 1px solid $corPrimaria;
+                color: $corPrimaria;
+                cursor: pointer;
+                background-color: white;
+
+                &.principal{
+                    background-color: $corPrimaria;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    
+
 
 
     @media screen and ( min-width: $desktopBreakpoint) {
         width: 40%;
         margin-top: 110px;
+
+        .perfil{
+            padding: 20px 50px 48px;
+    
+            .avatar {
+                width: 120px;
+                height: 120px;
+                margin-right: 48px;
+    
+            }
+        
+            .infos{
+                .dados {
+                    .status{
+                        margin-bottom: 24px;
+       
+                        strong {
+                            font-size: 18px;
+                            line-height: 16px;
+                        }
+        
+                        span {
+                            font-size: 16px;
+                            line-height: 16px;
+                        }
+                    }
+                }
+    
+                button {
+                    font-size: 16px;
+                    height: 48px;
+                }
+            }
+        }
     }
 }
