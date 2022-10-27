@@ -1,39 +1,41 @@
 <script lang="ts">
-    import router from '@/router';
-    import { defineComponent } from 'vue';
-    import {LoginServices} from '../services/LoginServices'
+import router from '@/router';
+import { defineComponent } from 'vue';
+import { LoginServices } from '../services/LoginServices'
 
-    const loginServices = new LoginServices();
-    
-    export default defineComponent({
-        props: {
-            title: String,
-            rightLabel: String,
-            showLeft: Boolean,
-            isLeftIcon: Boolean,
-            showRight: Boolean,
-            isRightIcon: Boolean,
+const loginServices = new LoginServices();
 
+export default defineComponent({
+    props: {
+        title: String,
+        rightLabel: String,
+        showLeft: Boolean,
+        isLeftIcon: Boolean,
+        showRight: Boolean,
+        isRightIcon: Boolean,
+
+    },
+    methods: {
+        goBack() {
+            router.back();
         },
-        methods: {
-            goback(){
-                router.back();
-            },
-            logout(){
-                loginServices.logout();
-                router.push({name: 'login'});
-            }
+        logout() {
+            loginServices.logout();
+            router.push({ name: 'login' });
         }
-    });
+    }
+});
 </script>
 <template>
-    <div class="container-acoes" >
-      <img src="../assets/imagens/voltar.svg" alt="voltar" v-if="showLeft && !isLeftIcon" @click="goback" />
-      <span v-else-if="showLeft && !isLeftIcon" >Cancelar</span>
-      <strong>{{title}}</strong>
-      <img src="../assets/imagens/sair-ativo.svg" alt="sair"  v-if="showRight &&isRightIcon" @click="logout" />
-      <span class="principal" v-else-if="showRight && !isRightIcon" >{{rightLabel}}</span>
-    </div>    
+    <div class="container-acoes">
+        <img src="../assets/imagens/voltar.svg" alt="voltar" v-if="showLeft && isLeftIcon" @click="goBack" />
+        <span v-if="showLeft && !isLeftIcon">Cancelar</span>
+        <strong>{{ title }}</strong>
+        <img src="../assets/imagens/sair-ativo.svg" alt="sair" v-if="showRight && isRightIcon" @click="logout" />
+        <span class="principal" v-else-if="showRight && !isRightIcon">{{ rightLabel }}</span>
+    </div>
 </template>
+
+
 
 <style lang="scss" src="@/assets/styles/headerAcoes.scss" />

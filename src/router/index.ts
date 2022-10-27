@@ -34,7 +34,7 @@ const router = createRouter({
       meta: {rotaPrivada: true}
     },
     {
-      path: '/perfil/:id',
+      path: '/perfil/',
       name: 'perfil',
       component: PerfilVue,
       meta: {rotaPrivada: true}
