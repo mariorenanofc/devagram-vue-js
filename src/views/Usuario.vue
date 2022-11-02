@@ -58,8 +58,13 @@ export default defineComponent({
 
 <template>
     <Header :hide="true" />
-    <HeaderPerfil :usuario="usuario" :title="usuario?.nome" :showLeft="getShowLeft" :isLeftIcon="true"
-        :showRight="false" v-if="usuario?._id" />
+    <HeaderPerfil 
+        :usuario="usuario" 
+        :title="usuario?.nome" 
+        :showLeft="getShowLeft" 
+        :isLeftIcon="true"
+        :showRight="false"
+         v-if="usuario?._id" />
     <Feed :posts="posts" :temCabecalho="true" /> <!--  -->
     <Footer />
 </template>
