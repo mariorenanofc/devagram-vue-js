@@ -1,0 +1,102 @@
+@import "./variaveis.scss";
+
+.container-editar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-bottom: 60px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    .container-acoes{
+        width: 92%;
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+        margin-top: 16px;
+        margin-bottom: 5px;
+
+        border: solid 3px transparent;
+
+        background-image: linear-gradient(to bottom,  white, white), radial-gradient(circle at top center, $corPrimaria, $corPrimaria3);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+    }
+
+    button {
+        border: none;
+        outline: none;
+        text-decoration: underline;
+        color: $corPrimaria;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-bottom: 32px;
+        background: none;
+    }
+
+    .input {
+        width: 95%;
+        border-top: 0.5px solid $cinza1;
+        border-bottom: 0.5px solid $cinza1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+
+        span {
+            font-size: 14px;
+            color: $cinza3;
+            margin-right: 10px;
+        }
+
+        input {
+            flex: 1;
+            font-size: 14px;
+            color: $cinza4;
+            border: none;
+            outline: none;
+        }
+
+        img {
+            margin-left: 10px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    @media screen and ( min-width: $desktopBreakpoint) {
+        width: 40%;
+        margin-top: 110px;
+        padding-bottom: 400px;
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+    
+        button {
+            font-size: 16px;
+        }
+    
+        .input {
+            span, input {
+                font-size: 16px;
+                
+            }
+    
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+ 
+    }
+}
