@@ -5,7 +5,7 @@ import { LoginServices } from '../services/LoginServices'
 
 const loginServices = new LoginServices();
 
-export default defineComponent({
+ export default defineComponent({
     props: {
         title: String,
         rightLabel: String,
@@ -32,7 +32,8 @@ export default defineComponent({
         <span v-else-if="showLeft && !isLeftIcon">Cancelar</span>
         <strong>{{ title }}</strong>
         <img src="../assets/imagens/sair-ativo.svg" alt="sair" v-if="showRight && isRightIcon" @click="logout" />
-        <span class="principal" v-else-if="showRight && !isRightIcon">{{ rightLabel }}</span>
+        <span class="principal" v-else-if="showRight && !isRightIcon"
+            @click="$emit('acoesCallback')">{{ rightLabel }}</span>
     </div>
 </template>
 

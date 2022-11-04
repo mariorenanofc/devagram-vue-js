@@ -17,4 +17,7 @@ export class UsuarioServices extends HttpApiServices{
         return await this.put('/seguir?id=' +id);
     }
     
+    async atualizar(body : any){
+        await this.put('/usuario', body);
+    } 
 }
