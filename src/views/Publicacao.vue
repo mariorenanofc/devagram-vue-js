@@ -37,7 +37,17 @@ export default defineComponent({
         selecionarImagem(event : any){
             if(event?.target?.files && event?.target?.files.length > 0){
                 const arquivo = event?.target?.files[0];
-                const fileReader = new FileReader();
+                this.obterImagemPreview(arquivo);
+            }
+        },
+        dropImagem(event : any){
+            if(event?.dataTransfer?.files && event?.dataTransfer?.files.length > 0){
+                const arquivo = event?.dataTransfer?.files[0];
+                this.obterImagemPreview(arquivo);
+            }
+        },
+        obterImagemPreview(arquivo : any){
+            const fileReader = new FileReader();
                 fileReader.readAsDataURL(arquivo);
                 fileReader.onloadend = () => {
                     const imagemFinal = {
@@ -47,9 +57,7 @@ export default defineComponent({
 
                     this.imagem = imagemFinal;
                 }
-            }
-        },
-       
+        }
     }
 });
 </script>
@@ -57,16 +65,18 @@ export default defineComponent({
 
 <template>
     <Header :hide="true" />
-    <div class="container-publicacao">
+    <div class="container-publicacao" :class="{'not-preview' : mobile && !imagem?.preview}">
         <HeaderAcoes :showLeft="mobile" :showRight="imagem?.preview" 
             :rightLabel="getAcaoLabel" :title="getTitle" />
 
-        <div class="form" v-if="!imagem?.preview">
+        <div class="form" v-if="!imagem?.preview" @dragover.prevent @drop.prevent="dropImagem">
             <img src="../assets/imagens/selecionar.svg" alt="selecionar Imagem" />
             <span>Arraste sua foto aqui!</span>
             <button @click="abrirSeletor">{{getButtonText}}</button>
-            <input type="file" class="oculto" accept="image/*" ref="referenciaInput">
+            <input type="file" class="oculto" accept="image/*" ref="referenciaInput" @input="selecionarImagem">
         </div>
+
+        <img :src="imagem.preview" v-if="imagem.preview && !avancar" />
     </div>
     <Footer />
 </template>
