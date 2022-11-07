@@ -6,6 +6,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import UsuarioVue from '@/views/Usuario.vue';
 import PerfilVue from '@/views/Perfil.vue';
 import EditarVue from '@/views/Editar.vue';
+import PublicacaoVue from '@/views/Publicacao.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +44,12 @@ const router = createRouter({
       path: '/editar',
       name: 'editar',
       component: EditarVue,
+      meta: {rotaPrivada: true}
+    },
+    {
+      path: '/publicacao',
+      name: 'publicacao',
+      component: PublicacaoVue,
       meta: {rotaPrivada: true}
     }
     

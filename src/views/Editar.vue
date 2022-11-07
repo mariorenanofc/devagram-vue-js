@@ -21,6 +21,9 @@ export default defineComponent({
     },
     computed: {
         getImagem() {
+
+            console.log(this.avatar)
+            console.log(this.imagem)
             return this.imagem?.preview ? this.imagem?.preview : this.avatar;
         }
     },
@@ -70,8 +73,8 @@ export default defineComponent({
                     localStorage.setItem('nome', this.nome);
                 
                 }
-                if(this.imagem.arquivo){
-                    localStorage.setItem('avatar', this.imagem.arquivo);
+                if(this.imagem.preview){
+                    localStorage.setItem('avatar', this.imagem.preview);
                 
                 }
                 return router.back();
@@ -102,9 +105,8 @@ export default defineComponent({
             <input type="text" v-model="nome" placeholder="Informe seu nome">
             <img src="../assets/imagens/limpar.svg" alt="limpar" @click="limpar" v-if="nome" />
         </div>
-        <Footer />
     </div>
-
+    <Footer />
 </template>
 
 <style lang="scss" src="@/assets/styles/editar.scss" />

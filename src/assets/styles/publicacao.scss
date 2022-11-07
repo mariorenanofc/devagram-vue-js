@@ -1,0 +1,67 @@
+@import "./variaveis.scss";
+
+.container-publicacao {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    .container-acoes{
+        width: 92%;
+    }
+
+    .form{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 60px;
+
+        img {
+            margin-bottom: 10px;
+        }
+
+        button {
+            color: white;
+            width: 200px;
+            height: 48px;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: $corPrimaria3;
+            border: none;
+            font-size: 14px;
+        }
+    }
+
+    @media screen and ( min-width: $desktopBreakpoint) {
+        width: 40%;
+        height: 80%;
+        margin-top: 110px;
+    
+        .form{
+            img{
+                width: 80px;
+                height: 80px;
+                margin-bottom: 34px;
+            }
+
+            span{
+                font-size: 16px;
+                margin-bottom: 48px;
+            }
+
+            button {
+                width: 374px;
+                font-size: 16px;
+            }
+        }
+    
+    }
+}
