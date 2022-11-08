@@ -14,7 +14,7 @@ export default defineComponent({
         return {
             descricao: '',
             imagem: {} as any,
-            mobile: window.innerWidth <=992,
+            mobile: window.innerWidth <= 992,
             avancar: false
         }
     },
@@ -23,10 +23,10 @@ export default defineComponent({
             return this.mobile? "Nova Publicação"  : "Criar nova Publicação"
         },
         getAcaoLabel(){
-            return  this.avancar ? "Concluir" : "Avançar"
+            return  this.avancar ? "Compartilhar" : "Avançar"
         },
         getButtonText(){
-            return this.mobile? "Selecionar foto" : "Selecionar no computador"
+            return this.mobile ? "Selecionar foto" : "Selecionar no computador"
         }
     },
     methods: {
@@ -44,7 +44,7 @@ export default defineComponent({
             if(event?.dataTransfer?.files && event?.dataTransfer?.files.length > 0){
                 const arquivo = event?.dataTransfer?.files[0];
                 this.obterImagemPreview(arquivo);
-            }
+            }    
         },
         obterImagemPreview(arquivo : any){
             const fileReader = new FileReader();
@@ -57,6 +57,12 @@ export default defineComponent({
 
                     this.imagem = imagemFinal;
                 }
+        },
+        doAvancar(){
+            this.avancar = true
+        },
+        async compartilhar(){
+
         }
     }
 });
@@ -67,7 +73,8 @@ export default defineComponent({
     <Header :hide="true" />
     <div class="container-publicacao" :class="{'not-preview' : mobile && !imagem?.preview}">
         <HeaderAcoes :showLeft="mobile" :showRight="imagem?.preview" 
-            :rightLabel="getAcaoLabel" :title="getTitle" />
+            :rightLabel="getAcaoLabel" :title="getTitle" 
+            @acoesCallback="avancar ? compartilhar() : doAvancar() " />
 
         <div class="form" v-if="!imagem?.preview" @dragover.prevent @drop.prevent="dropImagem">
             <img src="../assets/imagens/selecionar.svg" alt="selecionar Imagem" />
