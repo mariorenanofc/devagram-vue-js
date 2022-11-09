@@ -4,9 +4,10 @@ import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import HeaderAcoes from '@/components/HeaderAcoes.vue';
 import Avatar from '@/components/Avatar.vue';
+import router from '../router'
+import {PublicacaoServices} from '../services/PublicacaoServices'
 
-
-
+const publicacaoServices =  new PublicacaoServices();
 
 export default defineComponent({
     components: { Header, Footer, HeaderAcoes, Avatar },
@@ -62,7 +63,31 @@ export default defineComponent({
             this.avancar = true
         },
         async compartilhar(){
+            try {
+                if(!this.descricao && this.imagem.arquivo){
+                    return;
+                }
 
+                const requisicaoBody = new FormData();
+                if(this.descricao){
+                    requisicaoBody.append('descricao', this.descricao);
+                
+                }
+                if(this.imagem.arquivo){
+                    requisicaoBody.append('file', this.imagem.arquivo);
+                
+                }
+
+                await publicacaoServices.publicar(requisicaoBody);
+                return router.push({name : 'home'});
+
+            } catch (e : any) {
+                if(e?.response?.data?.erro){
+                    console.log(e?.response?.data?.erro);
+                }else{
+                    console.log('Não foi possível efetuar as alterações, tente novamente!', e);
+                }
+            }
         }
     }
 });
@@ -79,11 +104,18 @@ export default defineComponent({
         <div class="form" v-if="!imagem?.preview" @dragover.prevent @drop.prevent="dropImagem">
             <img src="../assets/imagens/selecionar.svg" alt="selecionar Imagem" />
             <span>Arraste sua foto aqui!</span>
-            <button @click="abrirSeletor">{{getButtonText}}</button>
+            <button @click="abrirSeletor"> {{getButtonText}} </button>
             <input type="file" class="oculto" accept="image/*" ref="referenciaInput" @input="selecionarImagem">
         </div>
 
         <img :src="imagem.preview" v-if="imagem.preview && !avancar" />
+
+        <div class="concluir" v-if="avancar">
+            <img :src="imagem.preview" />
+            <textarea v-model="descricao" placeholder="Escreva  uma legenda" />
+
+
+        </div>
     </div>
     <Footer />
 </template>
