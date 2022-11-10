@@ -5,9 +5,9 @@ import Footer from '../components/Footer.vue';
 import HeaderAcoes from '@/components/HeaderAcoes.vue';
 import Avatar from '@/components/Avatar.vue';
 import router from '../router'
-import {PublicacaoServices} from '../services/PublicacaoServices'
+import {PublicacaoServices} from "../services/PublicacaoServices";
 
-const publicacaoServices =  new PublicacaoServices();
+const publicacaoServices =   new PublicacaoServices();
 
 export default defineComponent({
     components: { Header, Footer, HeaderAcoes, Avatar },
