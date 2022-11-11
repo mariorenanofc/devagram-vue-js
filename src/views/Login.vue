@@ -64,7 +64,8 @@ const loginService = new LoginServices();
 </script>
 
 <template>
-    <div class="container-publico">
+    <Loading :active="loading" :can-cancel="false" color="#5E49FF" :is-full-page="true" />
+    <div class="container-publico" v-if="!loading">
         <img src="../assets/imagens/logo.svg" alt="Logo Devagram" class="logo" />
         <form >
             <p v-if="erro" class="error">{{erro}}</p>

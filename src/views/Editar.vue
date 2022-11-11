@@ -6,17 +6,19 @@ import { UsuarioServices } from '@/services/UsuarioServices';
 import HeaderAcoes from '@/components/HeaderAcoes.vue';
 import Avatar from '@/components/Avatar.vue';
 import router from '@/router'
+import Loading from 'vue3-loading-overlay';
 
 
 const usuarioServices = new UsuarioServices();
 
 export default defineComponent({
-    components: { Header, Footer, HeaderAcoes, Avatar },
+    components: { Header, Footer, HeaderAcoes, Avatar, Loading },
     data() {
         return {
             nome: localStorage.getItem('nome') as string,
             avatar: localStorage.getItem('avatar') as string,
-            imagem: {} as any
+            imagem: {} as any,
+            loading: false
         }
     },
     computed: {
@@ -55,7 +57,7 @@ export default defineComponent({
                 if(!this.nome && this.imagem.arquivo){
                     return;
                 }
-
+                this.loading = true
                 const requisicaoBody = new FormData();
                 if(this.nome){
                     requisicaoBody.append('nome', this.nome);
@@ -78,12 +80,14 @@ export default defineComponent({
                 
                 }
                 return router.back();
+                this.loading = false;
             } catch (e : any) {
                 if(e?.response?.data?.erro){
                     console.log(e?.response?.data?.erro);
                 }else{
                     console.log('Não foi possível efetuar as alterações, tente novamente!', e);
                 }
+                this.loading = false
             }
         }
     }
@@ -92,8 +96,9 @@ export default defineComponent({
 
 
 <template>
+    <Loading :active="loading" :can-cancel="false" color="#5E49FF" :is-full-page="true" />
     <Header :hide="true" />
-    <div class="container-editar">
+    <div class="container-editar" v-if="!loading">
         <HeaderAcoes :showLeft="true" :showRight="true" 
             rightLabel=" Concluir" title="Editar Perfil"  
             @acoesCallback="concluirEdicao"/>
