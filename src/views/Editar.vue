@@ -79,8 +79,8 @@ export default defineComponent({
                     localStorage.setItem('avatar', this.imagem.preview);
                 
                 }
-                return router.back();
                 this.loading = false;
+                return router.back();
             } catch (e : any) {
                 if(e?.response?.data?.erro){
                     console.log(e?.response?.data?.erro);
