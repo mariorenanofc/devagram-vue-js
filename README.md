@@ -38,3 +38,13 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Mobile project pictures
+<div  style="display: inline" align="center">
+    <img  src="https://user-images.githubusercontent.com/99850715/202877672-cb79bead-cbd4-4395-9fa1-ae10179a347e.png" alt="Barra-de-pesquisa" width="150px">
+    <img  src="https://user-images.githubusercontent.com/99850715/202877674-c6298e88-0e88-4325-b348-ff17760f3a13.png" alt="Editar-perfil" width="150px">
+    <img  src="https://user-images.githubusercontent.com/99850715/202877675-c3a6fc82-afd2-4b8d-9875-678d1a6fa71c.png" alt="home" width="150px">
+    <img  src="https://user-images.githubusercontent.com/99850715/202877676-2dc621f1-5108-4af8-8a0c-453fe2b264de.png" alt="perfil" width="150px">
+    <img src="https://user-images.githubusercontent.com/99850715/202877677-b40169ea-9458-423f-bc21-35be9aa350c9.png" alt="publicar" width="150px">
+
+ </div>
